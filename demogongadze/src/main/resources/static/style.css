@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa; /* Цвет фона */
+}
+.notification-btn {
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none; /* Убрать границу кнопки */
+}
+
+.notification-btn:hover {
+    background-color: #0056b3; /* Измененный цвет фона при наведении */
+}
+.container {
+    margin-top: 50px; /* Отступ сверху для контейнера */
+}
+
+.nav-tabs {
+    margin-bottom: 20px; /* Отступ снизу для навигационных вкладок */
+}
+
+.table th,
+.table td {
+    text-align: center; /* Выравнивание текста в ячейках таблицы по центру */
+}
+
+.form-control {
+    margin-bottom: 10px; /* Отступ снизу для полей формы */
+}
+
+.btn-primary {
+    width: 100%; /* Ширина кнопки в форме */
+}
+
+.btn-action {
+    margin-right: 5px; /* Отступ справа для кнопок действий */
+}
+
+/* style.css */
+

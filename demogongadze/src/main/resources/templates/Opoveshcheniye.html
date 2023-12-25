@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>opoves</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="http://localhost:8082">Админ
+                панель</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8082/api/opoves/all">opovos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8082/registration">Регистрация</a>
+        </li>
+    </ul>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Text</th>
+            <th scope="col">User</th>
+            <th scope="col">Action</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="opoves: ${opovesh}">
+            <td th:text="${opoves.id}"></td>
+            <td th:text="${opoves.text}"></td>
+            <td th:text="${opoves.users.username}"></td>
+            <td>
+                <a th:href="@{/api/opoves/edit(id=${opoves.id})}" class="btn btn-warning btn-action">Edit</a>
+                <a th:href="@{/api/opoves/delete(id=${opoves.id})}" class="btn btn-danger btn-action">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row w-25 mx-auto">
+        <form th:action="@{/api/opoves/save}" th:object="${opoves}" method="post">
+            <label for="text">Text</label>
+            <input id="text" class="form-control" type="text" th:field="*{text}">
+            <label for="userId">User ID</label>
+            <input id="userId" class="form-control" type="text" th:field="*{users.id}">
+            <button type="submit" class="btn btn-primary mt-3">Добавить</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container mt-5">
+
+    <script src="/java.js"></script>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" class="btn btn-danger mb-3">
+    </form>
+
+    <button onclick="showNotification()" class="btn btn-primary notification-btn mb-3">Показать уведомление</button>
+
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="http://localhost:8082">Админ
+                панель</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8082/api/opoves/all">opovos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8082/registration">Регистрация</a>
+        </li>
+    </ul>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Login</th>
+            <th scope="col">Password</th>
+            <div sec:authorize="hasRole('ADMIN')">
+                <th scope="col">Action</th>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <div sec:authorize="hasRole('ADMIN')">
+
+            <td>
+                <a th:href="@{/api/users/delete(id=${user.id})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/api/users/edit(id=${user.id})}" class="btn btn-warning">Edit</a>
+            </td>
+</div>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row w-25 mx-auto">
+<!--        <form th:action="@{/api/users/update}" th:object="${user}" method="post">-->
+<!--            <input class="form-control" type="hidden" th:field="*{id}">-->
+<!--            <label>Name</label>-->
+<!--            <input class="form-control" type="text" th:field="*{username}">-->
+<!--            <label>Login</label>-->
+<!--            <input class="form-control" type="text" th:field="*{password}">-->
+<!--            <button type="submit" class="btn btn-primary mt-3">Save</button>-->
+<!--        </form>-->
+    </div>
+</div>
+
+<!-- Подключение скрипта Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
