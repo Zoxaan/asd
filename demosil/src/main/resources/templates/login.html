@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<h1 class="th">Авторизация</h1>
+<body>
+<form class="form" th:action="@{/login}" method="post">
+    <input type="text" name="username"></br>
+    <input type="text" name="password"></br>
+    <input type="submit" value="Login">
+
+
+</form>
+<style>
+    .form{
+     text-align:center;
+    }
+    .th{
+    text-align:center;
+    }
+</style>
+</body>
+</html>
